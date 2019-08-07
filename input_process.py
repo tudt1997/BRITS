@@ -6,16 +6,18 @@ import numpy as np
 import pandas as pd
 import ujson as json
 
+DATA_DIR = "./raw/set-a"
+
 patient_ids = []
 
-for filename in os.listdir('./raw/set-a'):
+for filename in os.listdir(DATA_DIR):
     # the patient data in PhysioNet contains 6-digits
     match = re.search('\d{6}', filename)
     if match:
         id_ = match.group()
         patient_ids.append(id_)
 
-out = pd.read_csv('./raw/set-a/Outcomes-a.txt').set_index('RecordID')['In-hospital_death']
+out = pd.read_csv(os.path.join(DATA_DIR, 'Outcomes-a.txt').set_index('RecordID')['In-hospital_death']
 
 # we select 35 attributes which contains enough non-values
 attributes = ['DiasABP', 'HR', 'Na', 'Lactate', 'NIDiasABP', 'PaO2', 'WBC', 'pH', 'Albumin', 'ALT', 'Glucose', 'SaO2',
@@ -96,7 +98,7 @@ def parse_rec(values, masks, evals, eval_masks, dir_):
 
 
 def parse_id(id_):
-    data = pd.read_csv('./raw/{}.txt'.format(id_))
+    data = pd.read_csv(os.path.join(DATA_DIR,'{}.txt'.format(id_)))
     # accumulate the records within one hour
     data['Time'] = data['Time'].apply(lambda x: to_time_bin(x))
 
