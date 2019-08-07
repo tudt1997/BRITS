@@ -22,10 +22,10 @@ auc = []
 
 for i in range(10):
     #model =  RandomForestClassifier().fit(data[:n_train], label[:n_train])
-    model = LinearSVC(max_iter=10000, tol=1e-10).fit(data[:n_train], label[:n_train])
+    model = LinearSVC(max_iter=10000, tol=1e-10).fit(data[:n_train], label[:n_train].ravel())
     pred = model.predict(data[n_train:])
     #auc.append(roc_auc_score(label[n_train:].reshape(-1,), pred[:, 1].reshape(-1, )))
-    auc.append(roc_auc_score(label[n_train:].reshape(-1, ), pred.reshape(-1, )))
+    auc.append(roc_auc_score(label[n_train:].ravel(), pred.ravel()))
 
 print(np.mean(auc))
 
