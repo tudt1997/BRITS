@@ -1,7 +1,7 @@
 import xgboost as xgb
 import numpy as np
 
-model_name = 'brits_i'
+model_name = 'brits'
 
 impute = np.load('./{}_data.npy'.format(model_name)).reshape(-1, 48 * 35)
 label = np.load('./{}_label.npy'.format(model_name))
@@ -15,13 +15,21 @@ print(label.shape)
 
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import roc_auc_score
+from sklearn.linear_model import SGDClassifier
+from sklearn.svm import LinearSVC
 
 auc = []
 
 for i in range(10):
-    model = RandomForestClassifier().fit(data[:n_train], label[:n_train])
+    #model = RandomForestClassifier().fit(data[:n_train], label[:n_train])
+    model = LinearSVC(max_iter=10000, tol=1e-10).fit(data[:n_train], label[:n_train])
     pred = model.predict_proba(data[n_train:])
 
     auc.append(roc_auc_score(label[n_train:].reshape(-1,), pred[:, 1].reshape(-1, )))
 
-print(np.mean(auc))
+print(impute.shape, label.shape, np.mean(auc))
+
+# if FLAGS.model_type == "sgd_svm":
+#          model = SGDClassifier(max_iter=10000, tol=1e-10)
+#      elif FLAGS.model_type == "svm":
+#          model = LinearSVC(max_iter=10000, tol=1e-10)
