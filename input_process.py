@@ -143,7 +143,8 @@ def parse_id(id_):
 
 
 for id_ in patient_ids:
-    if id_ != 140501: continue
+    print(type(id_))
+    if id_ != '140501': continue
     print('Processing patient {}'.format(id_))
     try:
         parse_id(id_)
