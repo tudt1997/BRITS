@@ -83,15 +83,14 @@ def parse_rec(values, masks, evals, eval_masks, dir_):
 
     # only used in GRU-D
     forwards = pd.DataFrame(values).fillna(method='ffill').fillna(0.0).as_matrix()
-    print(forwards.dtype)
     rec = {}
 
-    rec['values'] = np.nan_to_num(values).tolist()
+    # rec['values'] = np.nan_to_num(values).tolist()
     # rec['masks'] = masks.astype('int32').tolist()
     # imputation ground-truth
-    rec['evals'] = np.nan_to_num(evals).tolist()
+    # rec['evals'] = np.nan_to_num(evals).tolist()
     #rec['eval_masks'] = eval_masks.astype('int32').tolist()
-    rec['forwards'] = forwards.tolist()
+    # rec['forwards'] = forwards.tolist()
     rec['deltas'] = deltas.tolist()
 
     return rec
