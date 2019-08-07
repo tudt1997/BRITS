@@ -31,12 +31,13 @@ class MySet(Dataset):
         return rec
 
 def collate_fn(recs):
-    forward = map(lambda x: x['forward'], recs)
-    backward = map(lambda x: x['backward'], recs)
+    print(recs)
+    forward = list(map(lambda x: x['forward'], recs))
+    backward = list(map(lambda x: x['backward'], recs))
 
     def to_tensor_dict(recs):
         values = torch.FloatTensor(list(map(lambda r: r['values'], recs)))
-        print(recs)
+
         masks = torch.FloatTensor(list(map(lambda r: r['masks'], recs)))
         deltas = torch.FloatTensor(list(map(lambda r: r['deltas'], recs)))
 
@@ -44,8 +45,6 @@ def collate_fn(recs):
         eval_masks = torch.FloatTensor(list(map(lambda r: r['eval_masks'], recs)))
         forwards = torch.FloatTensor(list(map(lambda r: r['forwards'], recs)))
 
-
-        print(values.size(), forwards.size(), masks.size(), deltas.size(), evals.size(), eval_masks.size())
         return {'values': values, 'forwards': forwards, 'masks': masks, 'deltas': deltas, 'evals': evals, 'eval_masks': eval_masks}
 
     ret_dict = {'forward': to_tensor_dict(forward), 'backward': to_tensor_dict(backward)}
