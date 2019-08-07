@@ -118,7 +118,6 @@ def parse_id(id_):
     indices = np.random.choice(indices, len(indices) // 10)
 
     values = evals.copy()
-    print(indices.shape, np.isnan(evals).all())
     values[indices] = np.nan
 
     masks = ~np.isnan(values)
@@ -143,7 +142,6 @@ def parse_id(id_):
 
 
 for id_ in patient_ids:
-    if id_ != '140501': continue
     print('Processing patient {}'.format(id_))
     try:
         parse_id(id_)
