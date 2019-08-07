@@ -98,7 +98,7 @@ def parse_rec(values, masks, evals, eval_masks, dir_):
 
 
 def parse_id(id_):
-    data = pd.read_csv(os.path.join(DATA_DIR,' {}.txt'.format(id_)))
+    data = pd.read_csv(os.path.join(DATA_DIR, '{}.txt'.format(id_)))
     # accumulate the records within one hour
     data['Time'] = data['Time'].apply(lambda x: to_time_bin(x))
 
