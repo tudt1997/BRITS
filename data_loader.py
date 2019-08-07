@@ -31,7 +31,6 @@ class MySet(Dataset):
         return rec
 
 def collate_fn(recs):
-    print(recs)
     forward = list(map(lambda x: x['forward'], recs))
     backward = list(map(lambda x: x['backward'], recs))
 
