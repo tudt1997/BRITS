@@ -85,7 +85,6 @@ def parse_rec(values, masks, evals, eval_masks, dir_):
     forwards = pd.DataFrame(values).fillna(method='ffill').fillna(0.0).as_matrix()
     rec = {}
 
-    print(values.dtype, evals.dtype, forwards.dtype, deltas.dtype, masks.dtype)
     rec['values'] = np.nan_to_num(values).tolist()
     rec['masks'] = masks.astype('int32').tolist()
     # imputation ground-truth
@@ -132,9 +131,7 @@ def parse_id(id_):
 
     label = out.loc[int(id_)]
 
-    rec = {'label': label}
-    print(label, type(label))
-    print(label.dtype)
+    rec = {'label': label.astype('int32')}
     # prepare the model for both directions
     rec['forward'] = parse_rec(values, masks, evals, eval_masks, dir_='forward')
     rec['backward'] = parse_rec(values[::-1], masks[::-1], evals[::-1], eval_masks[::-1], dir_='backward')
