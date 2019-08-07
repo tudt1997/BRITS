@@ -87,10 +87,10 @@ def parse_rec(values, masks, evals, eval_masks, dir_):
     rec = {}
 
     rec['values'] = np.nan_to_num(values).tolist()
-    rec['masks'] = masks.astype('int32').tolist()
+    #rec['masks'] = masks.astype('int32').tolist()
     # imputation ground-truth
     rec['evals'] = np.nan_to_num(evals).tolist()
-    rec['eval_masks'] = eval_masks.astype('int32').tolist()
+    #rec['eval_masks'] = eval_masks.astype('int32').tolist()
     rec['forwards'] = forwards.tolist()
     rec['deltas'] = deltas.tolist()
 
@@ -144,6 +144,7 @@ def parse_id(id_):
 
 
 for id_ in patient_ids:
+    if id_ != 140501: continue
     print('Processing patient {}'.format(id_))
     parse_id(id_)
     # try:
