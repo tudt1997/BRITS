@@ -87,7 +87,7 @@ def parse_rec(values, masks, evals, eval_masks, dir_):
     rec = {}
 
     rec['values'] = np.nan_to_num(values).tolist()
-    #rec['masks'] = masks.astype('int32').tolist()
+    rec['masks'] = masks.astype('int32').tolist()
     # imputation ground-truth
     rec['evals'] = np.nan_to_num(evals).tolist()
     #rec['eval_masks'] = eval_masks.astype('int32').tolist()
