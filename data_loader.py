@@ -36,7 +36,7 @@ def collate_fn(recs):
 
     def to_tensor_dict(recs):
         values = torch.FloatTensor(list(map(lambda r: r['values'], recs)))
-        print(list(map(lambda r: r['masks'], recs)))
+        print(recs)
         masks = torch.FloatTensor(list(map(lambda r: r['masks'], recs)))
         deltas = torch.FloatTensor(list(map(lambda r: r['deltas'], recs)))
 
