@@ -118,7 +118,7 @@ def parse_id(id_):
     indices = np.random.choice(indices, len(indices) // 10)
 
     values = evals.copy()
-    print(indices.size())
+    print(indices.shape)
     values[indices] = np.nan
 
     masks = ~np.isnan(values)
