@@ -145,11 +145,12 @@ def parse_id(id_):
 
 for id_ in patient_ids:
     print('Processing patient {}'.format(id_))
-    try:
-        parse_id(id_)
-    except Exception as e:
-        print(e)
-        continue
+    parse_id(id_)
+    # try:
+    #     parse_id(id_)
+    # except Exception as e:
+    #     print(e)
+    #     continue
 
 fs.close()
 
