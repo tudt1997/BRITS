@@ -39,7 +39,7 @@ def train(model):
 
         if epoch % 100 == 0:
             print('Save checkpoint')
-            torch.save('./result/models/model_{}.pth'.format(epoch), model)
+            torch.save(model, './result/models/model_{}.pth'.format(epoch))
 
         run_loss = 0.0
 
