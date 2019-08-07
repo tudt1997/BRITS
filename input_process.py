@@ -85,6 +85,7 @@ def parse_rec(values, masks, evals, eval_masks, dir_):
     forwards = pd.DataFrame(values).fillna(method='ffill').fillna(0.0).as_matrix()
     rec = {}
 
+    print(values.dtype, evals.dtype, forwards.dtype, deltas.dtype, masks.dtype)
     rec['values'] = np.nan_to_num(values).tolist()
     rec['masks'] = masks.astype('int32').tolist()
     # imputation ground-truth
