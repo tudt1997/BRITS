@@ -37,6 +37,10 @@ def train(model):
     for epoch in range(args.epochs):
         model.train()
 
+        if epoch % 100 == 0:
+            print('Save checkpoint')
+            torch.save('./result/models/model_{epoch}.pth'.format(epoch), model)
+
         run_loss = 0.0
 
         for idx, data in enumerate(data_iter):
