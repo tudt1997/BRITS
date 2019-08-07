@@ -131,7 +131,7 @@ def parse_id(id_):
 
     label = out.loc[int(id_)]
 
-    rec = {'label': label.astype('int32')}
+    rec = {'label': int(label)}
     # prepare the model for both directions
     rec['forward'] = parse_rec(values, masks, evals, eval_masks, dir_='forward')
     rec['backward'] = parse_rec(values[::-1], masks[::-1], evals[::-1], eval_masks[::-1], dir_='backward')
