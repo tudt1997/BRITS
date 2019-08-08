@@ -14,16 +14,17 @@ print(impute.shape)
 print(label.shape)
 
 from sklearn.preprocessing import StandardScaler
-from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import roc_auc_score
+from sklearn.linear_model import SGDClassifier
+from sklearn.svm import LinearSVC
 
-auc = []
 
 data = StandardScaler().fit_transform(data)
 
-for i in range(5):
-    model =  RandomForestClassifier().fit(data[:n_train], label[:n_train])
+Cs = [0.01, 0.1, 1.0, 10.0]
+for C in Cs:
+    model = LinearSVC(C=C, max_iter=10000, tol=1e-10).fit(data[:n_train], label[:n_train].ravel())
     pred = model.predict(data[n_train:])
-    auc.append(roc_auc_score(label[n_train:].ravel(), pred.ravel()))
+    auc = roc_auc_score(label[n_train:].ravel(), pred.ravel())
+    print(C, auc)
 
-print(np.mean(auc))
