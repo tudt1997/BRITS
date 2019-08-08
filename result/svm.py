@@ -24,7 +24,7 @@ from sklearn.svm import LinearSVC
 Cs = [0.01, 0.1, 1.0, 10.0]
 for C in Cs:
     model = LinearSVC(C=C, max_iter=10000, tol=1e-10).fit(data[:n_train], label[:n_train].ravel())
-    pred = model.predict(data[n_train:])
+    pred = model.decision_function(data[n_train:]) #data[n_train:])
     auc = roc_auc_score(label[n_train:].ravel(), pred.ravel())
     print(C, auc)
 
