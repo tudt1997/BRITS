@@ -23,15 +23,16 @@ auc = []
 
 data = StandardScaler().fit_transform(data)
 
-for i in range(5):
-    #model =  RandomForestClassifier().fit(data[:n_train], label[:n_train])
+Cs = [0.01, 0.1, 1.0, 10.0]
+for C in Cs:
+    for i in range(5):
+        #model =  RandomForestClassifier().fit(data[:n_train], label[:n_train])
+        model = LinearSVC(C=C, max_iter=10000, tol=1e-10).fit(data[:n_train], label[:n_train].ravel())
+        pred = model.predict(data[n_train:])
+        #auc.append(roc_auc_score(label[n_train:].reshape(-1,), pred[:, 1].reshape(-1, )))
+        auc.append(roc_auc_score(label[n_train:].ravel(), pred.ravel()))
 
-    model = LinearSVC(max_iter=10000, tol=1e-10).fit(data[:n_train], label[:n_train].ravel())
-    pred = model.predict(data[n_train:])
-    #auc.append(roc_auc_score(label[n_train:].reshape(-1,), pred[:, 1].reshape(-1, )))
-    auc.append(roc_auc_score(label[n_train:].ravel(), pred.ravel()))
-
-print(np.mean(auc))
+    print(auc, np.mean(auc))
 
 # if FLAGS.model_type == "sgd_svm":
 #          model = SGDClassifier(max_iter=10000, tol=1e-10)
