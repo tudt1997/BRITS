@@ -19,7 +19,7 @@ from sklearn.linear_model import SGDClassifier
 from sklearn.svm import LinearSVC
 
 
-data = StandardScaler().fit_transform(data)
+# data = StandardScaler().fit_transform(data)
 
 Cs = [0.01, 0.1, 1.0, 10.0]
 for C in Cs:
