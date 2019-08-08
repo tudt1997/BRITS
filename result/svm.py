@@ -19,12 +19,12 @@ from sklearn.linear_model import SGDClassifier
 from sklearn.svm import LinearSVC
 
 
-# data = StandardScaler().fit_transform(data)
+data = StandardScaler().fit_transform(data)
 
-Cs = [0.01, 0.1, 1.0, 10.0]
+Cs = [0.001, 0.01, 0.1, 1.0, 10.0]
 for C in Cs:
     model = LinearSVC(C=C, max_iter=10000, tol=1e-10).fit(data[:n_train], label[:n_train].ravel())
-    pred = model.decision_function(data[n_train:]) #data[n_train:])
+    pred = model.decision_function(data[n_train:])
     auc = roc_auc_score(label[n_train:].ravel(), pred.ravel())
     print(C, auc)
 

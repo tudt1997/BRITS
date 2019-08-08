@@ -23,7 +23,7 @@ data = StandardScaler().fit_transform(data)
 
 for i in range(5):
     model =  RandomForestClassifier().fit(data[:n_train], label[:n_train])
-    pred = model.predict(data[n_train:])
+    pred = model.predict_proba(data[n_train:])
     auc.append(roc_auc_score(label[n_train:].ravel(), pred.ravel()))
 
 print(np.mean(auc))
