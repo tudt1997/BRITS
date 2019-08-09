@@ -6,7 +6,7 @@ import numpy as np
 import pandas as pd
 import json #ujson as json
 
-DATA_DIR = "./raw/set-a"
+DATA_DIR = "./raw/set-b"
 
 patient_ids = []
 
@@ -43,7 +43,7 @@ std = np.array(
      9.062327978713556, 106.50939503021543, 170.65318497610315, 14.856134327604906, 1.6369529387005546,
      133.96778334724377])
 
-fs = open('./json/json', 'w')
+fs = open('./json/json-b', 'w')
 
 def to_time_bin(x):
     h, m = map(int, x.split(':'))
