@@ -17,7 +17,7 @@ for filename in os.listdir(DATA_DIR):
         id_ = match.group()
         patient_ids.append(id_)
 
-out = pd.read_csv(os.path.join(DATA_DIR, 'Outcomes-a.txt')).set_index('RecordID')['In-hospital_death']
+out = pd.read_csv(os.path.join(DATA_DIR, 'Outcomes-b.txt')).set_index('RecordID')['In-hospital_death']
 
 # we select 35 attributes which contains enough non-values
 attributes = ['DiasABP', 'HR', 'Na', 'Lactate', 'NIDiasABP', 'PaO2', 'WBC', 'pH', 'Albumin', 'ALT', 'Glucose', 'SaO2',
