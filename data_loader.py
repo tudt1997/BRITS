@@ -18,9 +18,8 @@ class MySet(Dataset):
 
         # indices = np.arange(len(self.content))
         # val_indices = np.random.choice(indices, len(self.content) // 5)
-
         self.val_indices = len(self.train_content) + np.arange(len(self.val_content))
-        print(self.val_indices)
+
 
     def __len__(self):
         return len(self.content)
