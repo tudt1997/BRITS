@@ -1,5 +1,6 @@
-# import xgboost as xgb
 import numpy as np
+import warnings
+warnings.simplefilter(action='ignore', category=FutureWarning)
 
 model_name = 'brits'
 
@@ -8,7 +9,7 @@ label = np.load('./{}_label.npy'.format(model_name))
 
 data = np.nan_to_num(impute)
 
-n_train = 3000
+n_train = 2000
 
 print(impute.shape)
 print(label.shape)
@@ -19,11 +20,11 @@ from sklearn.metrics import roc_auc_score
 
 auc = []
 
-data = StandardScaler().fit_transform(data)
+#data = StandardScaler().fit_transform(data)
 
-for i in range(5):
+for i in range(20):
     model =  RandomForestClassifier().fit(data[:n_train], label[:n_train])
-    preds = model.predict_proba(data[n_train:])
-    auc.append(roc_auc_score(label[n_train:].ravel(), preds[:, 1].ravel()))
+    preds = model.predict_proba(data[n_train:])[:, 1]
+    auc.append(roc_auc_score(label[n_train:].ravel(), preds.ravel()))
 
 print(np.mean(auc))

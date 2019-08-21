@@ -12,8 +12,10 @@ from torch.utils.data import Dataset, DataLoader
 class MySet(Dataset):
     def __init__(self):
         super(MySet, self).__init__()
-        self.content = open('./json/json').readlines()
+        self.train_content = open('./json/json-a').readlines()
+        self.val_content = open('./json/json-b').readlines()
 
+        print(type(self.train_content), self.train_content)
         indices = np.arange(len(self.content))
         val_indices = np.random.choice(indices, len(self.content) // 5)
 
