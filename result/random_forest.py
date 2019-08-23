@@ -8,7 +8,7 @@ impute = np.load('./{}_data.npy'.format(model_name)).reshape(-1, 48 * 35)
 label = np.load('./{}_label.npy'.format(model_name))
 
 data = np.nan_to_num(impute)
-
+print(data.shape)
 n_train = 2000
 
 print(impute.shape)
