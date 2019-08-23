@@ -7,9 +7,9 @@ model_name = 'brits'
 impute = np.load('./{}_data.npy'.format(model_name)).reshape(-1, 48 * 35)
 label = np.load('./{}_label.npy'.format(model_name))
 
-data = np.nan_to_num(impute)
+data = np.nan_to_num(impute)[3997:]
 print(data.shape)
-n_train = 3997
+n_train = data // 2
 
 print(impute.shape)
 print(label.shape)
