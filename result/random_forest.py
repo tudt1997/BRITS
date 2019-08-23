@@ -5,7 +5,7 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 model_name = 'brits'
 
 impute = np.load('./{}_data.npy'.format(model_name)).reshape(-1, 48 * 35)
-label = np.load('./{}_label.npy'.format(model_name))
+label = np.load('./{}_label.npy'.format(model_name))[3997:]
 
 data = np.nan_to_num(impute)[3997:]
 print(data.shape)
