@@ -5,11 +5,11 @@ warnings.simplefilter(action='ignore', category=FutureWarning)
 model_name = 'brits'
 
 impute = np.load('./{}_data.npy'.format(model_name)).reshape(-1, 48 * 35)
-label = np.load('./{}_label.npy'.format(model_name))#[3997:]
+label = np.load('./{}_label.npy'.format(model_name))[3997:]
 
-data = np.nan_to_num(impute)#[3997:]
+data = np.nan_to_num(impute)[3997:]
 print(data.shape)
-n_train = 3000#data.shape[0] // 2
+n_train = data.shape[0] // 2
 
 print(impute.shape)
 print(label.shape)
