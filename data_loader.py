@@ -13,12 +13,12 @@ class MySet(Dataset):
     def __init__(self):
         super(MySet, self).__init__()
         self.train_content = open('./json/json-a').readlines()
-        self.val_content = open('./json/json-b').readlines()
-        self.content = self.train_content + self.val_content
+        #self.val_content = open('./json/json-b').readlines()
+        self.content = self.train_content# + self.val_content
 
-        # indices = np.arange(len(self.content))
-        # val_indices = np.random.choice(indices, len(self.content) // 5)
-        self.val_indices = len(self.train_content) + np.arange(len(self.val_content))
+        indices = np.arange(len(self.content))
+        self.val_indices = np.random.choice(indices, len(self.content) // 5)
+        #self.val_indices = len(self.train_content) + np.arange(len(self.val_content))
 
 
     def __len__(self):

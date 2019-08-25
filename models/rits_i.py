@@ -106,7 +106,7 @@ class Model(nn.Module):
             h = h * gamma
             x_h = self.regression(h)
 
-            x_c =  m * x +  (1 - m) * x_h
+            x_c = m * x + (1 - m) * x_h
 
             x_loss += torch.sum(torch.abs(x - x_h) * m) / (torch.sum(m) + 1e-5)
 
