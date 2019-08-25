@@ -15,11 +15,8 @@ n_train = data.shape[0] // 2
 print(impute.shape)
 print(label.shape)
 
-
-
-
 # data = StandardScaler().fit_transform(data)
 
 model = LogisticRegression().fit(data[:n_train], label[:n_train].ravel())
-pred = model.decision_function(data[n_train:])
-auc = roc_auc_score(label[n_train:].ravel(), pred.ravel())
+preds = model.predict_proba(data[n_train:])[:, 1]
+auc = roc_auc_score(label[n_train:].ravel(), preds.ravel())
