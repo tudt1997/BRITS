@@ -20,6 +20,6 @@ print(label.shape)
 
 # data = StandardScaler().fit_transform(data)
 
-model = LogisticRegression(C=C, max_iter=10000, tol=1e-10).fit(data[:n_train], label[:n_train].ravel())
+model = LogisticRegression().fit(data[:n_train], label[:n_train].ravel())
 pred = model.decision_function(data[n_train:])
 auc = roc_auc_score(label[n_train:].ravel(), pred.ravel())
