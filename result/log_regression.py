@@ -23,3 +23,4 @@ print(label.shape)
 model = LogisticRegression().fit(data[:n_train], label[:n_train].ravel())
 preds = model.predict_proba(data[n_train:])[:, 1]
 auc = roc_auc_score(label[n_train:].ravel(), preds.ravel())
+print(auc)
