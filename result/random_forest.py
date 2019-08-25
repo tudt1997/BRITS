@@ -9,7 +9,7 @@ label = np.load('./{}_label.npy'.format(model_name))#[3997:]
 
 data = np.nan_to_num(impute)#[3997:]
 print(data.shape)
-n_train = data.shape[0] // 2
+n_train = 3000#data.shape[0] // 2
 
 print(impute.shape)
 print(label.shape)
