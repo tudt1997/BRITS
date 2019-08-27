@@ -85,7 +85,7 @@ def get_train_loader(batch_size = 64, shuffle = True):
     return data_iter
 
 
-def get_val_loader(batch_size = 64, shuffle = True):
+def get_val_loader(batch_size = 64, shuffle = False):
     data_set = MyValSet()
     data_iter = DataLoader(dataset = data_set, \
                               batch_size = batch_size, \
