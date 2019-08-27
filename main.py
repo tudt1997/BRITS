@@ -32,7 +32,8 @@ args = parser.parse_args()
 def train(model):
     optimizer = optim.Adam(model.parameters(), lr=1e-3)
 
-    data_iter = data_loader.get_loader(batch_size=args.batch_size)
+    data_iter = data_loader.get_train_loader(batch_size=args.batch_size)
+    val_iter = data_loader.get_train_loader(batch_size=args.batch_size)
 
     for epoch in range(args.epochs):
         model.train()
@@ -51,7 +52,8 @@ def train(model):
 
             print('\r Progress epoch {}, {:.2f}%, average loss {}'.format(epoch, (idx + 1) * 100.0 / len(data_iter), run_loss / (idx + 1.0))),
 
-        evaluate(model, data_iter)
+        if epoch % 10 == 0:
+            evaluate(model, val_iter)
 
 
 def evaluate(model, val_iter):
