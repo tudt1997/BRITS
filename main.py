@@ -33,7 +33,7 @@ def train(model):
     optimizer = optim.Adam(model.parameters(), lr=1e-3)
 
     data_iter = data_loader.get_train_loader(batch_size=args.batch_size)
-    val_iter = data_loader.get_train_loader(batch_size=args.batch_size)
+    val_iter = data_loader.get_val_loader(batch_size=args.batch_size)
 
     for epoch in range(args.epochs):
         model.train()
