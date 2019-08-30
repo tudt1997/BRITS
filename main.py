@@ -26,6 +26,7 @@ parser.add_argument('--model', type=str)
 parser.add_argument('--hid_size', type=int)
 parser.add_argument('--impute_weight', type=float)
 parser.add_argument('--label_weight', type=float)
+parser.add_argument('--exp_name', type=str)
 args = parser.parse_args()
 
 
@@ -40,7 +41,8 @@ def train(model):
 
         if epoch % 100 == 0:
             print('Save checkpoint')
-            torch.save(model, './result/models/model_{}.pth'.format(epoch))
+            torch.save(model, './result/models/model_{}_'.format(epoch) \
+                       + args.exp_name + '.pth')
 
         run_loss = 0.0
 
@@ -109,8 +111,8 @@ def evaluate(model, val_iter):
     save_impute = np.concatenate(save_impute, axis=0)
     save_label = np.concatenate(save_label, axis=0)
 
-    np.save('./result/{}_data'.format(args.model), save_impute)
-    np.save('./result/{}_label'.format(args.model), save_label)
+    np.save('./result/{}_data_'.format(args.model) + args.exp_name, save_impute)
+    np.save('./result/{}_label_'.format(args.model) + args.exp_name, save_label)
 
 
 def run():
