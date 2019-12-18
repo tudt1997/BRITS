@@ -2,3 +2,5 @@
 json
 raw
 result/*.npy
+.DS_Store
+dataset/
